@@ -2,17 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/**
+ * ROUTES FOR ADMIN.
+ */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/dashboard', 'Admin\DashboardController@dashboard')->name('admin.dashboard');
+Route::get('/books', 'Admin\DashboardController@books')->name('admin.books');
+Route::get('/members', 'Admin\DashboardController@members')->name('admin.members');
+Route::get('/circulations', 'Admin\DashboardController@circulations')->name('admin.circulations');
+Route::get('/users/{id}', 'Admin\DashboardController@users')->name('admin.users');
