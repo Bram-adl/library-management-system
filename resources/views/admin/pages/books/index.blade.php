@@ -13,12 +13,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>DataTables</h1>
+                <h1>Data Buku</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">DataTables</li>
+                    <li class="breadcrumb-item"><a href="/dashboard">Beranda</a></li>
+                    <li class="breadcrumb-item active">Data Buku</li>
                 </ol>
             </div>
         </div>
@@ -34,42 +34,47 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                        <h3 class="card-title">Tabel Data Buku</h3>
+                        <a href="/books/create" class="btn btn-primary btn-sm float-right">Tambah Buku</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
+                                    <th>No</th>
+                                    <th>ID Buku</th>
+                                    <th>Judul Buku</th>
+                                    <th>Pengarang</th>
+                                    <th>Penerbit</th>
+                                    <th>Tahun Terbit</th>
+                                    <th>Kelola</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @for ($i = 0; $i < 10; $i++)
+                                @foreach ($books as $key=>$book)
                                 <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $book->id_buku }}</td>
+                                    <td>{{ $book->judul_buku }}</td>
+                                    <td>{{ $book->pengarang }}</td>
+                                    <td>{{ $book->penerbit }}</td>
+                                    <td>{{ $book->th_terbit }}</td>
+                                    <td>
+                                        <a href="{{ action('BookController@edit', $book->id_buku) }}" class="btn btn-sm btn-success">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-sm btn-danger" onclick="event.preventDefault(); document.getElementById('delete').submit()">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        <form action="{{ action('BookController@destroy', $book->id_buku) }}" method="POST" id="delete">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
                                     </td>
-                                    <td>Win 95+</td>
-                                    <td> 4</td>
-                                    <td>X</td>
                                 </tr>
-                                @endfor
+                                @endforeach
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                     <!-- /.card-body -->

@@ -7,7 +7,14 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/dashboard', 'Admin\DashboardController@dashboard')->name('admin.dashboard');
-Route::get('/books', 'Admin\DashboardController@books')->name('admin.books');
-Route::get('/members', 'Admin\DashboardController@members')->name('admin.members');
+
+// Route::get('/members', 'Admin\DashboardController@members')->name('admin.members');
 Route::get('/circulations', 'Admin\DashboardController@circulations')->name('admin.circulations');
 Route::get('/users/{id}', 'Admin\DashboardController@users')->name('admin.users');
+
+Route::resources([
+    'books' => 'BookController',
+    'members' => 'MemberController',
+    // 'circulations' => 'CirculationController',
+    // 'users' => 'UserController',
+]);
