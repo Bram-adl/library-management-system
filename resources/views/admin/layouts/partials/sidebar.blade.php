@@ -64,7 +64,7 @@
 
                 <label for="" class="font-weight-normal bg-dark">Setting</label>
                 <li class="nav-item">
-                    <a href="/users/id" class="nav-link" id="pengguna-sistem">
+                    <a href="/users" class="nav-link" id="pengguna-sistem">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Pengguna Sistem
