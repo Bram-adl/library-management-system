@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Circulation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -147,7 +148,17 @@ class CirculationController extends Controller
      */
     public function destroy($id)
     {
-        $circulation = Circulation::find($id)->delete();
+        $circulation = Circulation::find($id);
+
+        DB::table('log_pinjam')->insert([
+            'id_buku' => $circulation->id_buku,
+            'id_anggota' => $circulation->id_anggota,
+            'tanggal_pinjam' => $circulation->tanggal_pinjam,
+            'tanggal_kembali' => $circulation->tanggal_kembali,
+            'tanggal_dikembalikan' => date('Y-m-d'),
+        ]);
+
+        $circulation->delete();
 
         return redirect()->route('circulations.index');
     }

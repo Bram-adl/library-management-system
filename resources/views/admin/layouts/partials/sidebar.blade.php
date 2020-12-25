@@ -11,10 +11,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ asset('AdminLTE-3.1.0/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                <img src="/images/{{ Auth::user()->foto }}" class="img-circle elevation-2" style="width: 2.4rem; height: 2.4rem; object-fit: cover;" alt="User Image">
             </div>
             <div class="info">
-                <a href="/users/id" class="d-block">Alexander Pierce</a>
+                <a href="/users/{{ Auth::user()->id_user }}" class="d-block">{{ Auth::user()->username }}</a>
             </div>
         </div>
 
@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout').submit" class="nav-link">
+                    <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout').submit()" class="nav-link">
                         <i class="nav-icon fas fa-power-off"></i>
                         <p>
                             Logout
